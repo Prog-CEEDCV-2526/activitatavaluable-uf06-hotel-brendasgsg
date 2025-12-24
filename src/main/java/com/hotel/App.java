@@ -1,4 +1,5 @@
 package com.hotel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -110,7 +111,28 @@ public class App {
      * Processa l'opció seleccionada per l'usuari i crida el mètode corresponent.
      */
     public static void gestionarOpcio(int opcio) {
-       //TODO:
+        // TODO:
+        switch (opcio) {
+            case 1:
+                reservarHabitacio(); // crida al metode reservar
+                break;
+            case 2:
+                alliberarHabitacio(); // crida al metode alliberar
+                break;
+            case 3:
+                consultarDisponibilitat(); // crida al metode consultar
+                break;
+            case 4:
+                obtindreReservaPerTipus(); // crida a obtindre reserva per a poder llistarla amb el codig
+                break;
+            case 5:
+                obtindreReserva(); // crida al metode obtindre reserva
+                break;
+            case 6:
+                break;
+            default:
+                System.out.println("Opció no válida.");
+        }
     }
 
     /**
@@ -119,8 +141,8 @@ public class App {
      */
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
-        //TODO:
-        
+        // TODO:
+
     }
 
     /**
@@ -128,7 +150,7 @@ public class App {
      * retorna el nom del tipus.
      */
     public static String seleccionarTipusHabitacio() {
-        //TODO:
+        // TODO:
         return null;
     }
 
@@ -139,7 +161,7 @@ public class App {
      */
     public static String seleccionarTipusHabitacioDisponible() {
         System.out.println("\nTipus d'habitació disponibles:");
-        //TODO:
+        // TODO:
         return null;
     }
 
@@ -148,7 +170,7 @@ public class App {
      * els retorna en un ArrayList de String.
      */
     public static ArrayList<String> seleccionarServeis() {
-        //TODO:
+        // TODO:
 
         return null;
     }
@@ -158,7 +180,7 @@ public class App {
      * els serveis seleccionats i l'IVA.
      */
     public static float calcularPreuTotal(String tipusHabitacio, ArrayList<String> serveisSeleccionats) {
-        //TODO:
+        // TODO:
         return 0;
     }
 
@@ -167,7 +189,7 @@ public class App {
      * (entre 100 i 999) que no estiga repetit.
      */
     public static int generarCodiReserva() {
-        //TODO:
+        // TODO:
         return 0;
     }
 
@@ -177,7 +199,7 @@ public class App {
      */
     public static void alliberarHabitacio() {
         System.out.println("\n===== ALLIBERAR HABITACIÓ =====");
-         // TODO: Demanar codi, tornar habitació i eliminar reserva
+        // TODO: Demanar codi, tornar habitació i eliminar reserva
     }
 
     /**
@@ -192,7 +214,7 @@ public class App {
      * associades a un tipus d'habitació.
      */
     public static void llistarReservesPerTipus(int[] codis, String tipus) {
-         // TODO: Implementar recursivitat
+        // TODO: Implementar recursivitat
     }
 
     /**
@@ -201,7 +223,7 @@ public class App {
     public static void obtindreReserva() {
         System.out.println("\n===== CONSULTAR RESERVA =====");
         // TODO: Mostrar dades d'una reserva concreta
- 
+
     }
 
     /**
@@ -217,7 +239,7 @@ public class App {
      * Consulta i mostra en detall la informació d'una reserva.
      */
     public static void mostrarDadesReserva(int codi) {
-       // TODO: Imprimir tota la informació d'una reserva
+        // TODO: Imprimir tota la informació d'una reserva
     }
 
     // --------- MÈTODES AUXILIARS (PER MILLORAR LEGIBILITAT) ---------
@@ -230,9 +252,9 @@ public class App {
         int valor = 0;
         boolean correcte = false;
         while (!correcte) {
-                System.out.print(missatge);
-                valor = sc.nextInt();
-                correcte = true;
+            System.out.print(missatge);
+            valor = sc.nextInt();
+            correcte = true;
         }
         return valor;
     }
