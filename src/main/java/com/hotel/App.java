@@ -151,7 +151,22 @@ public class App {
      */
     public static String seleccionarTipusHabitacio() {
         // TODO:
-        return null;
+        System.out.println("1. Estadndard.");
+        System.out.println("2. Suite.");
+        System.out.println("3. Deluxe.");
+
+        int opcioHabitacio = sc.nextInt();// declara i inicialitza la variable amb la eleció de l'usuari
+
+        if (opcioHabitacio == 1) {
+            return TIPUS_ESTANDARD;
+        } else if (opcioHabitacio == 2) {
+            return TIPUS_SUITE;
+        } else if (opcioHabitacio == 3) {
+            return TIPUS_DELUXE;
+        } else {
+            return null;
+        }
+
     }
 
     /**
@@ -162,7 +177,23 @@ public class App {
     public static String seleccionarTipusHabitacioDisponible() {
         System.out.println("\nTipus d'habitació disponibles:");
         // TODO:
-        return null;
+        System.out.println("1. Estandard. - 2. Suite. - 3. Deluxe.");
+        int habitacioDisponible = sc.nextInt();
+
+        if(habitacioDisponible == 1 && disponibilitatHabitacions.get(TIPUS_ESTANDARD)>0) {
+            //si la elecció es 1 i ademés la disponibilitat es major que 0
+            System.out.println("Estandard." + preusHabitacions.get(TIPUS_ESTANDARD) + "EUR");
+            return TIPUS_ESTANDARD;
+        } else if(habitacioDisponible == 2 && disponibilitatHabitacions.get(TIPUS_SUITE)>0); {
+            System.out.println("Suite." + preusHabitacions.get(TIPUS_SUITE) + "EUR");
+            return TIPUS_SUITE;
+        } else if (habitacioDisponible == 3 && disponibilitatHabitacions.get(TIPUS_DELUXE)>0); {
+            System.out.println("Deluxe." + preusHabitacions.get(TIPUS_DELUXE) + "EUR");
+            return TIPUS_DELUXE;
+        } else {
+            return null;
+        }
+        
     }
 
     /**
