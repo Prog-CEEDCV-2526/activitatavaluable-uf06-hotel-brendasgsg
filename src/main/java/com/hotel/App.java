@@ -180,20 +180,21 @@ public class App {
         System.out.println("1. Estandard. - 2. Suite. - 3. Deluxe.");
         int habitacioDisponible = sc.nextInt();
 
-        if(habitacioDisponible == 1 && disponibilitatHabitacions.get(TIPUS_ESTANDARD)>0) {
-            //si la elecció es 1 i ademés la disponibilitat es major que 0
+        if (habitacioDisponible == 1 && disponibilitatHabitacions.get(TIPUS_ESTANDARD) > 0) {
+            // si la elecció es 1 i ademés la disponibilitat es major que 0
             System.out.println("Estandard." + preusHabitacions.get(TIPUS_ESTANDARD) + "EUR");
             return TIPUS_ESTANDARD;
-        } else if(habitacioDisponible == 2 && disponibilitatHabitacions.get(TIPUS_SUITE)>0); {
+        } else if (habitacioDisponible == 2 && disponibilitatHabitacions.get(TIPUS_SUITE) > 0) {
             System.out.println("Suite." + preusHabitacions.get(TIPUS_SUITE) + "EUR");
             return TIPUS_SUITE;
-        } else if (habitacioDisponible == 3 && disponibilitatHabitacions.get(TIPUS_DELUXE)>0); {
+        } else if (habitacioDisponible == 3 && disponibilitatHabitacions.get(TIPUS_DELUXE) > 0) {
             System.out.println("Deluxe." + preusHabitacions.get(TIPUS_DELUXE) + "EUR");
             return TIPUS_DELUXE;
         } else {
+            System.out.println("Habitació no disponible o opció incorrecta.");
             return null;
         }
-        
+
     }
 
     /**
@@ -202,8 +203,33 @@ public class App {
      */
     public static ArrayList<String> seleccionarServeis() {
         // TODO:
+        ArrayList<String> serveis = new ArrayList<>();// creem una llista vuida per aguardar els serveis
+        System.out.println("Selecciona serveis adicionals, no es poden repetir.");
+        System.out.println("0. No vuic serveis");
+        System.out.println("1. Esmorzar.");
+        System.out.println("2. Gimnàs.");
+        System.out.println("3. Spa.");
+        System.out.println("4. Piscina.");
 
-        return null;
+        int opcioServei; // variable per a guardar el que elegeix l'usuari
+
+        do {
+            opcioServei = sc.nextInt();
+            if (opcioServei == 0) {
+                System.out.println("Opció de serveis finalitzada.");
+            } else if (opcioServei == 1 && !serveis.contains("Esmorzar")) {// per a saber si ja l'havía elegit
+                serveis.add("Esmorzar");// anyadïx esmorzar al arrai
+            } else if (opcioServei == 2 && !serveis.contains("Gimnàs")) {
+                serveis.add("Gimnàs");
+            } else if (opcioServei == 3 && !serveis.contains("Spa")) {
+                serveis.add("Spa");
+            } else if (opcioServei == 4 && !serveis.contains("Piscina")) {
+                serveis.add("Piscina");
+            }
+        } while (opcioServei != 0 && serveis.size() < 4); // repetir el bucle mentre la eleccio siga diferent de 0 i
+                                                          // mentreleseleccions siguen menos que 4
+
+        return serveis;
     }
 
     /**
@@ -212,7 +238,17 @@ public class App {
      */
     public static float calcularPreuTotal(String tipusHabitacio, ArrayList<String> serveisSeleccionats) {
         // TODO:
-        return 0;
+        float totalHabitacio = preusHabitacions.get(tipusHabitacio);// variable amb elvalor del preu de l'habitacio que
+                                                                    // haja elegit l'usuari
+
+        for (String servei : serveisSeleccionats) { // for each per a recorrerelarray ja que poden haber varies
+                                                    // eleccions
+            totalHabitacio += preusServeis.get(servei);
+        }
+
+        float totalAmbIva = totalHabitacio * (1 + IVA);
+
+        return totalAmbIva;
     }
 
     /**
