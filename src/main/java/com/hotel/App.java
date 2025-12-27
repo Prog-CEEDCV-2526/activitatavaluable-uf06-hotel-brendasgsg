@@ -295,6 +295,25 @@ public class App {
     public static void alliberarHabitacio() {
         System.out.println("\n===== ALLIBERAR HABITACIÓ =====");
         // TODO: Demanar codi, tornar habitació i eliminar reserva
+        System.out.println("Introdueix el codi de reserva a eliminar.");
+        int codi = sc.nextInt();
+
+        if (!reserves.containsKey(codi)) {// per a comprobar si el codi introduït existeix en reserves
+            System.out.println("no existeix cap reserva amb aquest codi.");
+            return;
+        }
+        ArrayList<String> dadesReserva = reserves.get(codi);// creem llista que busque la pisició que té codi en la
+                                                            // llista reserves
+        String tipusHabitacio = dadesReserva.get(0);// creem variable que ens diga que tipusde habitació té asociada el
+                                                    // codi introduit
+
+        reserves.remove(codi);// borrem la reserva asociada alcodi introduït
+
+        int disponibles = disponibilitatHabitacions.get(tipusHabitacio);// creem variable que ens diga el valor del
+                                                                        // tipus de habitació asociat al codi
+        disponibilitatHabitacions.put(tipusHabitacio, disponibles + 1);// sumem 1 a habitacións disponibles
+
+        System.out.println("Reserva eliminada correctament.");
     }
 
     /**
@@ -302,6 +321,12 @@ public class App {
      */
     public static void consultarDisponibilitat() {
         // TODO: Mostrar lliures i ocupades
+        System.out.println("\n===== CONSULTAR DISPONIBILITAT =====");
+        System.out.println("TIPUS\tLLIURES\tOCUPADES");
+
+        mostrarDisponibilitatTipus(TIPUS_ESTANDARD);
+        mostrarDisponibilitatTipus(TIPUS_SUITE);
+        mostrarDisponibilitatTipus(TIPUS_DELUXE);
     }
 
     /**
