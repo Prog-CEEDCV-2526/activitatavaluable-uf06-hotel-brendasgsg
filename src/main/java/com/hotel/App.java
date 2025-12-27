@@ -142,6 +142,22 @@ public class App {
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
         // TODO:
+        String habitacioElegida = seleccionarTipusHabitacioDisponible();// declarem variable per a emmagatzemar les
+                                                                        // opcions escollides
+
+        if (habitacioElegida == null) {
+            System.out.println("Opció incorrecta, eixint.");
+
+            return;
+        }
+        ArrayList<String> serveisSeleccionats = seleccionarServeis();// declarem per a emmagatzemar els serveis elegits
+
+        float preuTotal = calcularPreuTotal(habitacioElegida, serveisSeleccionats);// declarem per a emmagatzemar els
+                                                                                   // preus
+        System.out.println("Preu de la reserva " + preuTotal + "EUR.");
+
+        int codiReservaGenerat = generarCodiReserva();// variable per a emmagatzemar els codis generats
+        System.out.println("Codi de reserva " + codiReservaGenerat);
 
     }
 
@@ -219,12 +235,16 @@ public class App {
                 System.out.println("Opció de serveis finalitzada.");
             } else if (opcioServei == 1 && !serveis.contains("Esmorzar")) {// per a saber si ja l'havía elegit
                 serveis.add("Esmorzar");// anyadïx esmorzar al arrai
+                System.out.println("Esmorzar afegit.");
             } else if (opcioServei == 2 && !serveis.contains("Gimnàs")) {
                 serveis.add("Gimnàs");
+                System.out.println("Gimnàs afegit.");
             } else if (opcioServei == 3 && !serveis.contains("Spa")) {
                 serveis.add("Spa");
+                System.out.println("Spa afegit");
             } else if (opcioServei == 4 && !serveis.contains("Piscina")) {
                 serveis.add("Piscina");
+                System.out.println("Piscina afegit.");
             }
         } while (opcioServei != 0 && serveis.size() < 4); // repetir el bucle mentre la eleccio siga diferent de 0 i
                                                           // mentreleseleccions siguen menos que 4
@@ -257,7 +277,15 @@ public class App {
      */
     public static int generarCodiReserva() {
         // TODO:
-        return 0;
+        int codiReserva = 0;
+
+        Random rnd = new Random();
+
+        do {
+            codiReserva = rnd.nextInt(900) + 100; // per a obtindre numeros de 100-999
+        } while (reserves.containsKey(codiReserva)); // per a comprobar si el codi generat ja existeix
+
+        return codiReserva;
     }
 
     /**
