@@ -157,6 +157,15 @@ public class App {
         System.out.println("Preu de la reserva " + preuTotal + "EUR.");
 
         int codiReservaGenerat = generarCodiReserva();// variable per a emmagatzemar els codis generats
+        ArrayList<String> dadesReserva = new ArrayList<>();
+        dadesReserva.add(habitacioElegida);
+        dadesReserva.addAll(serveisSeleccionats);
+
+        reserves.put(codiReservaGenerat, dadesReserva);// per a que el codi generat es guarde
+
+        int disponibles = disponibilitatHabitacions.get(habitacioElegida);
+        disponibilitatHabitacions.put(habitacioElegida, disponibles - 1);// per a que la disponibilitat canvíe
+
         System.out.println("Codi de reserva " + codiReservaGenerat);
 
     }
@@ -343,6 +352,17 @@ public class App {
     public static void obtindreReserva() {
         System.out.println("\n===== CONSULTAR RESERVA =====");
         // TODO: Mostrar dades d'una reserva concreta
+        System.out.println("Introdueix el codi de reserva a consultar: ");
+        int codi = sc.nextInt();// tornem a crear la variable perque la de alliberarHabitacio sols te valor ahúi
+                                // dins
+
+        if (!reserves.containsKey(codi)) {// per a comprobar si el codi existeix
+            System.out.println("No existeix cap reserva amb aquest codi: ");
+            return;
+
+        }
+
+        mostrarDadesReserva(codi);
 
     }
 
@@ -360,6 +380,15 @@ public class App {
      */
     public static void mostrarDadesReserva(int codi) {
         // TODO: Imprimir tota la informació d'una reserva
+        System.out.println("Codi introduit: " + codi);
+        ArrayList<String> dades = reserves.get(codi);// busca les dadesdela reserva asociada al codi habitacio i serveis
+        System.out.println("Tipus d'habitació: " + dades.get(0));
+
+        for (int i = 1; i < dades.size(); i++) {// bucle forpera recorrerels serveeis que estàn a partir delaposició 1de
+                                                // dades
+            System.out.println("Serveis: " + dades.get(i));
+
+        }
     }
 
     // --------- MÈTODES AUXILIARS (PER MILLORAR LEGIBILITAT) ---------
